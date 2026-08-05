@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Li Gallery</title>
+    <link rel="icon" type="image/webp" href="favicon.webp">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="breadcrumb">
+            <a href="index.html">Daniel Li</a> &gt; <span>Gallery</span>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header gallery-page-header">
+            <h1>Gallery</h1>
+            <p>Things I have noticed, and things that have stayed with me.</p>
+        </section>
+
+        <div class="gallery-tabs" role="tablist" aria-label="Gallery collections">
+            <button class="gallery-tab" id="photosTab" type="button" role="tab" aria-selected="true" aria-controls="photosPanel" data-gallery-tab="photos">
+                <span class="gallery-tab-number" aria-hidden="true">01</span>
+                Photographs
+            </button>
+            <button class="gallery-tab" id="paintingsTab" type="button" role="tab" aria-selected="false" aria-controls="paintingsPanel" data-gallery-tab="paintings" tabindex="-1">
+                <span class="gallery-tab-number" aria-hidden="true">02</span>
+                Paintings
+            </button>
+        </div>
+
+        <section class="gallery-panel" id="photosPanel" role="tabpanel" aria-labelledby="photosTab">
+            <div class="gallery-panel-header">
+                <div>
+                    <p class="gallery-panel-description">Select photos of mine, rotated every 6 months</p>
+                </div>
+                <button class="gallery-view-toggle" id="openPhotoCarouselBtn" type="button" aria-haspopup="dialog" aria-controls="galleryCarousel">
+                    Carousel
+                </button>
+            </div>
+
+            <div class="gallery-grid" id="photoGrid">
+                <figure class="gallery-tile tile-01">
+                    <img src="assets/gallery/photo-01.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-02">
+                    <img src="assets/gallery/photo-02.webp" alt="" loading="lazy" decoding="async" width="900" height="1200">
+                </figure>
+                <figure class="gallery-tile tile-03">
+                    <img src="assets/gallery/photo-03.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-04">
+                    <img src="assets/gallery/photo-04.webp" alt="" loading="lazy" decoding="async" width="1600" height="900">
+                </figure>
+                <figure class="gallery-tile tile-05">
+                    <img src="assets/gallery/photo-05.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-06">
+                    <img src="assets/gallery/photo-06.webp" alt="" loading="lazy" decoding="async" width="900" height="1200">
+                </figure>
+                <figure class="gallery-tile tile-07">
+                    <img src="assets/gallery/photo-07.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-08">
+                    <img src="assets/gallery/photo-08.webp" alt="" loading="lazy" decoding="async" width="1600" height="900">
+                </figure>
+                <figure class="gallery-tile tile-09">
+                    <img src="assets/gallery/photo-09.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-10">
+                    <img src="assets/gallery/photo-10.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-11">
+                    <img src="assets/gallery/photo-11.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+                <figure class="gallery-tile tile-12">
+                    <img src="assets/gallery/photo-12.webp" alt="" loading="lazy" decoding="async" width="1200" height="900">
+                </figure>
+            </div>
+        </section>
+
+        <section class="gallery-panel paintings-panel" id="paintingsPanel" role="tabpanel" aria-labelledby="paintingsTab" hidden>
+            <div class="gallery-panel-header">
+                <div>
+                    <p class="gallery-panel-description">my inspirations</p>
+                </div>
+                <button class="gallery-view-toggle" id="openPaintingCarouselBtn" type="button" aria-haspopup="dialog" aria-controls="galleryCarousel" disabled>
+                    Carousel
+                </button>
+            </div>
+
+            <p class="painting-status" id="paintingStatus" role="status">Gathering paintings from Wikimedia Commons…</p>
+            <div class="painting-grid" id="paintingGrid"></div>
+        </section>
+
+        <div class="carousel-overlay" id="galleryCarousel" role="dialog" aria-modal="true" aria-label="Gallery carousel" hidden>
+            <button class="carousel-close" id="closeCarouselBtn" type="button" aria-label="Close carousel">&times;</button>
+            <button class="carousel-nav carousel-nav-prev" id="carouselPrevBtn" type="button" aria-label="Previous item">&#10094;</button>
+            <figure class="carousel-stage">
+                <img id="carouselImage" src="" alt="">
+                <figcaption class="carousel-caption" id="carouselCaption" hidden>
+                    <h2 id="carouselTitle"></h2>
+                    <dl class="carousel-metadata" id="carouselMetadata"></dl>
+                    <a class="carousel-source" id="carouselSource" href="" target="_blank" rel="noopener noreferrer">View on Wikimedia Commons</a>
+                </figcaption>
+            </figure>
+            <button class="carousel-nav carousel-nav-next" id="carouselNextBtn" type="button" aria-label="Next item">&#10095;</button>
+            <p class="carousel-count" id="carouselCount">1/1</p>
+        </div>
+    </main>
+
+    <script src="scripts/gallery.js"></script>
+</body>
+</html>
