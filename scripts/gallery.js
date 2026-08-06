@@ -35,6 +35,7 @@
     const largePaintingUrls = new Map();
     let photos = sortPhotoSources(Array.from(photoSourcesSet));
     let paintings = [];
+    let paintingTiles = [];
     let activeCollection = "photos";
     let currentIndex = 0;
     let isOpen = false;
@@ -61,7 +62,7 @@
         }
 
         if (selectedTab.dataset.galleryTab === "paintings") {
-            requestAnimationFrame(resizePaintingTiles);
+            requestAnimationFrame(layoutPaintingGrid);
         }
     }
 
@@ -338,40 +339,89 @@
         };
     }
 
-    function paintingColumnSpan(painting, index) {
+    function paintingRatio(painting) {
         const ratio = painting.width / painting.height;
-        if (ratio >= 1.45) {
-            return index % 4 === 0 ? 4 : 3;
-        }
-        if (ratio <= 0.8) {
-            return 2;
-        }
-        return index % 3 === 0 ? 3 : 2;
+        return Number.isFinite(ratio) && ratio > 0 ? ratio : 1.5;
     }
 
-    function resizePaintingTiles() {
-        if (!paintingGrid) {
+    function calculatePaintingRows(containerWidth) {
+        if (window.innerWidth < 600) {
+            return paintings.map((painting, index) => [index]);
+        }
+
+        const gap = parseFloat(getComputedStyle(paintingGrid).getPropertyValue("--painting-gap")) || 16;
+        const targetHeight = Math.max(170, Math.min(230, containerWidth * 0.29));
+        const minimumHeight = 115;
+        const maximumHeight = 320;
+        const best = new Array(paintings.length + 1);
+        best[paintings.length] = { cost: 0, rows: [] };
+
+        for (let start = paintings.length - 1; start >= 0; start -= 1) {
+            let ratioSum = 0;
+            let bestCandidate = null;
+
+            for (let end = start; end < paintings.length; end += 1) {
+                ratioSum += paintingRatio(paintings[end]);
+                const itemCount = end - start + 1;
+                const availableWidth = containerWidth - gap * (itemCount - 1);
+                if (availableWidth <= 0) {
+                    break;
+                }
+
+                const rowHeight = availableWidth / ratioSum;
+                const deviation = (rowHeight - targetHeight) / targetHeight;
+                let cost = deviation * deviation;
+
+                if (itemCount === 1 && paintings.length > 1) {
+                    cost += 0.45;
+                }
+                if (rowHeight < minimumHeight) {
+                    const undersize = (minimumHeight - rowHeight) / minimumHeight;
+                    cost += undersize * undersize * 4;
+                }
+                if (rowHeight > maximumHeight) {
+                    const oversize = (rowHeight - maximumHeight) / maximumHeight;
+                    cost += oversize * oversize * 4;
+                }
+
+                const candidate = {
+                    cost: cost + best[end + 1].cost,
+                    rows: [Array.from({ length: itemCount }, (_, offset) => start + offset), ...best[end + 1].rows]
+                };
+
+                if (!bestCandidate || candidate.cost < bestCandidate.cost) {
+                    bestCandidate = candidate;
+                }
+            }
+
+            best[start] = bestCandidate;
+        }
+
+        return best[0] ? best[0].rows : paintings.map((painting, index) => [index]);
+    }
+
+    function layoutPaintingGrid() {
+        if (!paintingGrid || paintingTiles.length === 0 || paintingGrid.clientWidth === 0) {
             return;
         }
 
-        if (window.innerWidth < 768) {
-            paintingGrid.querySelectorAll(".painting-tile").forEach((tile) => {
-                tile.style.gridRowEnd = "auto";
+        const fragment = document.createDocumentFragment();
+        const rows = calculatePaintingRows(paintingGrid.clientWidth);
+
+        rows.forEach((indices) => {
+            const row = document.createElement("div");
+            row.className = "painting-row";
+
+            indices.forEach((index) => {
+                const tile = paintingTiles[index];
+                tile.style.setProperty("--painting-ratio", paintingRatio(paintings[index]));
+                row.appendChild(tile);
             });
-            return;
-        }
 
-        const gridStyles = getComputedStyle(paintingGrid);
-        const rowHeight = parseFloat(gridStyles.gridAutoRows);
-        const rowGap = parseFloat(gridStyles.rowGap);
-
-        paintingGrid.querySelectorAll(".painting-tile").forEach((tile) => {
-            tile.style.gridRowEnd = "auto";
-            const tileStyles = getComputedStyle(tile);
-            const height = tile.getBoundingClientRect().height + parseFloat(tileStyles.marginTop);
-            const span = Math.ceil((height + rowGap) / (rowHeight + rowGap));
-            tile.style.gridRowEnd = "span " + span;
+            fragment.appendChild(row);
         });
+
+        paintingGrid.replaceChildren(fragment);
     }
 
     function renderPaintingGrid() {
@@ -379,12 +429,9 @@
             return;
         }
 
-        paintingGrid.replaceChildren();
-        paintings.forEach((painting, index) => {
+        paintingTiles = paintings.map((painting, index) => {
             const figure = document.createElement("figure");
             figure.className = "painting-tile";
-            figure.style.setProperty("--painting-column-span", paintingColumnSpan(painting, index));
-            figure.style.setProperty("--painting-offset", index % 5 === 1 || index % 5 === 4 ? "1.5rem" : "0px");
 
             const button = document.createElement("button");
             button.className = "painting-open";
@@ -404,15 +451,15 @@
             image.addEventListener("load", function () {
                 painting.width = image.naturalWidth;
                 painting.height = image.naturalHeight;
-                resizePaintingTiles();
+                requestAnimationFrame(layoutPaintingGrid);
             });
 
             button.appendChild(image);
             figure.appendChild(button);
-            paintingGrid.appendChild(figure);
+            return figure;
         });
 
-        requestAnimationFrame(resizePaintingTiles);
+        requestAnimationFrame(layoutPaintingGrid);
     }
 
     async function loadPaintings() {
@@ -671,7 +718,7 @@
             cancelAnimationFrame(resizeFrame);
         }
         resizeFrame = requestAnimationFrame(function () {
-            resizePaintingTiles();
+            layoutPaintingGrid();
             resizeFrame = null;
         });
     });
