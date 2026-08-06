@@ -1,10 +1,15 @@
 /* Ultra-minimal styling - like a Word document with hyperlinks */
 
+html {
+    min-height: 100%;
+    background: linear-gradient(135deg, #fffefb 0%, #fbfaf6 55%, #f8f7f2 100%);
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.4;
     color: #000;
-    background-color: #fff;
+    background: transparent;
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
@@ -26,7 +31,7 @@ body {
 }
 
 .breadcrumb a {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
 }
 
@@ -53,23 +58,23 @@ nav {
 }
 
 nav a {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
     margin-right: 1rem;
 }
 
 nav a:hover {
-    color: #551A8B;
+    color: #0A3463;
 }
 
 /* Links */
 a {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
 }
 
 a:hover {
-    color: #551A8B;
+    color: #0A3463;
 }
 
 /* Headings */
@@ -168,7 +173,7 @@ li {
 }
 
 .nav-links a {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
 }
 
@@ -188,7 +193,7 @@ li {
 }
 
 .btn {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
     margin-right: 1rem;
 }
@@ -305,6 +310,10 @@ footer {
 
 .welcome-ascii {
     margin: 2rem 0 1rem 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #000;
     font-family: "Courier New", Courier, monospace;
     font-size: calc(0.74rem + 2pt);
     font-weight: 700;
@@ -314,7 +323,7 @@ footer {
 }
 
 .download-link {
-    color: #0000EE;
+    color: #0A3463;
     text-decoration: underline;
     font-weight: 500;
     font-size: 1rem;
@@ -426,7 +435,7 @@ footer {
     font-size: 0.9rem;
     font-family: inherit;
     line-height: 1.2;
-    color: #0000EE;
+    color: #0A3463;
     background: none;
     border: 0;
     border-radius: 0;
@@ -436,7 +445,7 @@ footer {
 }
 
 .gallery-view-toggle:hover {
-    color: #551A8B;
+    color: #0A3463;
 }
 
 .gallery-view-toggle:disabled {
@@ -758,7 +767,7 @@ footer {
 }
 
 .download-link:hover {
-    color: #551A8B;
+    color: #0A3463;
 }
 
 /* Responsive */
