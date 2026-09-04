@@ -24,8 +24,36 @@
                 <h3>Experience</h3>
 
                 <div class="resume-item">
+                    <h4>AI Agent Evaluation Researcher</h4>
+                    <p class="company">CCC Intelligent Solutions - Industry-Sponsored Project</p>
+                    <p class="duration">September 2026 – Present</p>
+                    <ul>
+                        <li>Collaborating with CCC Intelligent Solutions' Innovation Foundry to build verifier-grounded evaluations for autonomous agents, cluster trace failures, and design held-in and held-out regression tests.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
                     <h4>Software Engineering Intern</h4>
-                    <p class="company">Citadel, Chicago, IL</p>
+                    <p class="company">QT Holding LLC</p>
+                    <p class="duration">June 2026 – August 2026</p>
+                    <ul>
+                        <li>Built and deployed an ultra-low-latency public social media ingestion system using headless Chromium, Groq-hosted GPT-OSS-120B, and SQLite; runs daily on on-premises bare-metal infrastructure to surface macro signals for trading decisions.</li>
+                        <li>Developed and maintained a containerized research terminal that consolidates market-moving public communications, economic releases, and overnight market activity with retrieval-augmented generation, giving the desk a continuously updated pre-session view.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Software Engineering Intern</h4>
+                    <p class="company">QT Holding LLC</p>
+                    <p class="duration">June 2025 – August 2025</p>
+                    <ul>
+                        <li>Built a low-latency macro news ingestion and LLM analysis pipeline with Next.js, surfacing market-moving events and trade context. Released a lite demo at <a href="https://www.marketepoll.com/" target="_blank" rel="noopener noreferrer">marketepoll.com</a>.</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Software Engineering Intern</h4>
+                    <p class="company">Citadel LLC, Chicago, IL</p>
                     <p class="duration">June 2020 – September 2020</p>
                     <ul>
                         <li>Built real-time trading data interface in .NET, providing fixed income traders with immediate visibility into bond market flows and reducing latency in decision-making.</li>
@@ -49,10 +77,10 @@
 
                 <div class="resume-item">
                     <h4>University of Illinois at Urbana-Champaign</h4>
-                    <p class="company">Master of Computer Science (Expected January 2026)</p>
+                    <p class="company">Master of Computer Science (Expected December 2026)</p>
                     <p class="company">Bachelor of Science in Computer Science + Economics (August 2025)</p>
                     <p class="duration">GPA: 3.80 / 4.00</p>
-                    <p>Relevant Coursework: Applied Machine Learning, ML for Software Engineering, Linear Algebra, Algorithms and Data Structures, Economic Forecasting, Discrete Structures</p>
+                    <p>Relevant Coursework: Applied Machine Learning, Machine Learning for Software Engineering, Linear Algebra, Algorithms and Data Structures, Causal Methods, Economic Forecasting</p>
                 </div>
             </div>
 
@@ -60,22 +88,12 @@
                 <h3>Selected Projects</h3>
 
                 <div class="resume-item">
-                    <h4>MarketEPOLL</h4>
+                    <h4>BloomBERT</h4>
                     <ul>
-                        <li>Exploits the low-latency nature of Llama70b on the Groq API to generate trades as soon as market news comes out, most optimally used to trade quarterly earnings.</li>
-                        <li>Built event-driven data pipeline with RSS and Zapier webhooks, enabling sub-second ingestion and processing of financial news.</li>
-                        <li>Integrated LangChain + Snowflake vecDB for structured financial analysis, improving accuracy of trading signals and enabling backtesting.</li>
-                        <li><strong>Technologies:</strong> Groq API, OpenAI API, LangChain, Snowflake API, TypeScript</li>
-                    </ul>
-                </div>
-
-                <div class="resume-item">
-                    <h4>Binomial Tree Pricing of Equity Derivatives</h4>
-                    <ul>
-                        <li>Developed a binomial pricing engine for American and European options using Markov chains to model equity up/down movements.</li>
-                        <li>Implemented user-input interface with TwelveData REST API, enabling real-time option pricing on arbitrary tickers and strike prices.</li>
-                        <li>Visualized pricing paths with a Treelib-based node design, making option valuation interpretable for both technical and non-technical users.</li>
-                        <li><strong>Technologies:</strong> NumPy, SciPy, Matplotlib, Treelib, REST API</li>
+                        <li>Built a private NVIDIA research terminal combining SEC filings, structured XBRL financials, and FRED macroeconomic data in a Dockerized Next.js, FastAPI, and PostgreSQL stack.</li>
+                        <li>Designed a typed LangGraph workflow that routes financial questions to SQL, filing questions to Qdrant, macro questions to FRED data, and mixed questions to both.</li>
+                        <li>Implemented evidence-grounded analyst briefs and a 36-question evaluation suite measuring routing accuracy, retrieval recall, citation correctness, and unsupported numerical claims.</li>
+                        <li><strong>Technologies:</strong> Python, FastAPI, LangGraph, Qdrant, PostgreSQL, Next.js</li>
                     </ul>
                 </div>
             </div>
@@ -84,25 +102,37 @@
                 <h3>Skills</h3>
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4>Technical Skills</h4>
+                        <h4>Languages</h4>
                         <ul>
                             <li>Python</li>
-                            <li>C++</li>
                             <li>TypeScript</li>
                             <li>SQL</li>
-                            <li>LangChain</li>
-                            <li>Snowflake</li>
-                            <li>REST APIs</li>
+                            <li>C++</li>
                         </ul>
                     </div>
 
                     <div class="skill-category">
-                        <h4>Soft Skills</h4>
+                        <h4>Frameworks and Data</h4>
                         <ul>
-                            <li>Analytical Thinking</li>
-                            <li>Team Collaboration</li>
-                            <li>Communication</li>
-                            <li>Problem Solving</li>
+                            <li>Next.js</li>
+                            <li>FastAPI</li>
+                            <li>LangGraph</li>
+                            <li>.NET</li>
+                            <li>PostgreSQL</li>
+                            <li>SQLite</li>
+                            <li>Qdrant</li>
+                            <li>Snowflake</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>AI and Infrastructure</h4>
+                        <ul>
+                            <li>RAG</li>
+                            <li>OpenAI, Groq, and Cerebras APIs</li>
+                            <li>Docker</li>
+                            <li>Headless Chromium</li>
+                            <li>REST APIs</li>
                         </ul>
                     </div>
                 </div>
