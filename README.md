@@ -23,6 +23,8 @@ Nothing is written until all prompts are completed. If you abort with `Ctrl+C`, 
 
 After the prompts, the script writes the article into `Essay_Folder/<slug>.html` and rebuilds the writings index from the published posts in `Essay_Folder/`.
 
+The writings index previews each article's opening paragraph, trimmed to about 160 characters with an ellipsis. The `excerpt` prompt sets the article's metadata rather than the preview shown in the index.
+
 If you choose to push immediately, the script runs `git add`, `git commit`, and `git push origin main` with the commit message:
 
 ```text
@@ -36,6 +38,6 @@ It also supports simple front matter at the top of the markdown file:
 title: My Post
 date: 2026-04-11
 slug: my-post
-excerpt: Short summary for the writings page
+excerpt: Short summary for the article metadata
 ---
 ```

@@ -614,6 +614,11 @@ def build_writings_section(posts: list[Post]) -> str:
         lines.append("            <div class=\"year-section\">")
         lines.append(f"                <h2>{year}</h2>")
         for post in grouped[year]:
+            excerpt = normalize_excerpt(
+                extract_first_content_paragraph(
+                    post.body_html or post.output_path.read_text(encoding="utf-8")
+                ) or post.title
+            )
             lines.append("                <div class=\"article-item\">")
             lines.append(
                 f"                    <h3><a href=\"{html.escape(post.relative_output_path)}\">{html.escape(post.title)}</a></h3>"
@@ -622,7 +627,7 @@ def build_writings_section(posts: list[Post]) -> str:
                 f"                    <p class=\"writing-excerpt\">Published on {html.escape(post.display_date)}.</p>"
             )
             lines.append(
-                f"                    <p class=\"writing-excerpt\">{html.escape(post.excerpt)}</p>"
+                f"                    <p class=\"writing-excerpt\">{html.escape(excerpt)}</p>"
             )
             lines.append("                </div>")
         lines.append("            </div>")
