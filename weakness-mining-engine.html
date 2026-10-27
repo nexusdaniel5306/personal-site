@@ -27,6 +27,80 @@
 
             <p>Our goal is to help agents become more reliable by identifying where they struggle across many runs, what we call &ldquo;weakness mining&rdquo;.</p>
         </section>
+
+        <section class="project-card">
+            <h3>How the process works</h3>
+            <p>Our approach has two connected loops. The first looks for recurring weaknesses in execution traces: records of what an agent did during a run. The second takes a prioritized weakness, investigates its cause, and tests a small change to the harness.</p>
+
+            <figure class="ccc-workflow" aria-labelledby="ccc-workflow-caption">
+                <div class="ccc-evidence">
+                    <strong>Shared evidence from agent runs</strong>
+                    <span>OpenTelemetry / Langfuse &rarr; PostgreSQL</span>
+                    <span>Execution traces, spans, and scores</span>
+                </div>
+
+                <div class="ccc-loops">
+                    <section class="ccc-loop ccc-loop-mining" aria-labelledby="ccc-mining-title">
+                        <p class="ccc-loop-label">Loop 1 &middot; Scheduled or on demand</p>
+                        <h4 id="ccc-mining-title">Find recurring weaknesses</h4>
+                        <ol class="ccc-steps">
+                            <li>
+                                <strong>Select traces</strong>
+                                <span>Pick eligible records from previous agent runs.</span>
+                            </li>
+                            <li>
+                                <strong>Extract possible causes</strong>
+                                <span>An LLM records structured clues and failure hypotheses.</span>
+                            </li>
+                            <li>
+                                <strong>Group similar failures</strong>
+                                <span>Separate by error type, then cluster summaries by meaning.</span>
+                            </li>
+                            <li>
+                                <strong>Build a weakness catalog</strong>
+                                <span>Name groups, save representative runs, and define how to find matching traces.</span>
+                            </li>
+                        </ol>
+                        <p class="ccc-repeat"><span aria-hidden="true">&#8634;</span> Wait for the next mining run</p>
+                    </section>
+
+                    <section class="ccc-loop ccc-loop-fixing" aria-labelledby="ccc-fixing-title">
+                        <p class="ccc-loop-label">Loop 2 &middot; Independent triage</p>
+                        <h4 id="ccc-fixing-title">Test a targeted fix</h4>
+                        <ol class="ccc-steps">
+                            <li>
+                                <strong>Prioritize and diagnose</strong>
+                                <span>Choose a cataloged weakness; inspect traces and source code.</span>
+                            </li>
+                            <li>
+                                <strong>Propose a small fix</strong>
+                                <span>Make a minimal change to the agent harness.</span>
+                            </li>
+                            <li>
+                                <strong>Benchmark and test</strong>
+                                <span>Check for improvement without unacceptable regressions.</span>
+                            </li>
+                            <li>
+                                <strong>Review and approve</strong>
+                                <span>Passing patches need human review and PR approval before a new harness version.</span>
+                            </li>
+                        </ol>
+                        <p class="ccc-repeat"><span aria-hidden="true">&#8634;</span> Failed tests: revise or reject the patch</p>
+                    </section>
+                </div>
+
+                <div class="ccc-feedback">
+                    <strong>Approved harness</strong>
+                    <span aria-hidden="true">&rarr;</span>
+                    <span>Future agent runs</span>
+                    <span aria-hidden="true">&rarr;</span>
+                    <span>New traces for the next mining cycle</span>
+                </div>
+                <figcaption id="ccc-workflow-caption">The weakness catalog is a handoff for triage. Mining can keep recurring independently of fixes, while future runs feed fresh evidence back into the process.</figcaption>
+            </figure>
+
+            <p>The aim is to move from individual failures to patterns we can investigate, then use benchmarks and regression tests to decide whether a proposed fix is worth keeping. A mined weakness is a starting point for diagnosis, not a confirmed root cause.</p>
+        </section>
     </main>
 </body>
 </html>

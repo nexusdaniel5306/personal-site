@@ -198,6 +198,136 @@ li {
     margin-right: 1rem;
 }
 
+/* CCC research workflow */
+.ccc-workflow {
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.ccc-evidence {
+    display: grid;
+    gap: 0.15rem;
+    padding: 1rem;
+    border: 1px solid #cdd6df;
+    border-radius: 6px;
+    background: #f1f5f8;
+    text-align: center;
+}
+
+.ccc-evidence span,
+.ccc-steps span {
+    display: block;
+    color: #4b5058;
+    font-size: 0.85rem;
+}
+
+.ccc-loops {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.ccc-loop {
+    --loop-accent: #685275;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #ded4e3;
+    border-top: 3px solid var(--loop-accent);
+    border-radius: 6px;
+    background: #f8f5fa;
+}
+
+.ccc-loop-fixing {
+    --loop-accent: #38665f;
+    border-color: #cbded8;
+    border-top-color: var(--loop-accent);
+    background: #f2f8f5;
+}
+
+.ccc-loop-label {
+    margin: 0;
+    color: var(--loop-accent);
+    font-size: 0.75rem;
+}
+
+.ccc-loop h4 {
+    margin: 0.3rem 0 1rem;
+    font-weight: 600;
+}
+
+.ccc-steps {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ccc-steps li {
+    position: relative;
+    margin: 0 0 1.5rem;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fffefb;
+}
+
+.ccc-steps li:not(:last-child)::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    color: var(--loop-accent);
+    content: "\2193";
+    line-height: 1.5rem;
+}
+
+.ccc-steps li:last-child {
+    margin-bottom: 0;
+}
+
+.ccc-repeat {
+    margin: 1rem 0 0;
+    color: var(--loop-accent);
+    font-size: 0.8rem;
+}
+
+.ccc-feedback {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35rem 0.65rem;
+    padding: 0.85rem;
+    border-top: 1px solid #cdd6df;
+    border-bottom: 1px solid #cdd6df;
+    color: #344c60;
+    font-size: 0.8rem;
+}
+
+.ccc-workflow figcaption {
+    margin-top: 0.7rem;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    .ccc-loops {
+        grid-template-columns: 1fr;
+    }
+
+    .ccc-feedback {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .ccc-feedback [aria-hidden="true"] {
+        transform: rotate(90deg);
+    }
+}
+
 /* Writings */
 .year-section {
     margin: 2rem 0;
