@@ -553,36 +553,14 @@ footer {
 }
 
 .home-intro .home-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
     margin-top: 1rem;
     color: #535b50;
     font-size: 0.85rem;
     overflow-wrap: anywhere;
-}
-
-.pond-controls:not([hidden]) {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    box-sizing: border-box;
-    width: min(100%, 960px);
-    margin: 0 auto;
-    padding: 0.5rem 2rem 1.5rem;
-    color: #62685e;
-    font-size: 0.8rem;
-    pointer-events: none;
-}
-
-.pond-controls button {
-    padding: 0.35rem 0;
-    border: 0;
-    background: transparent;
-    color: #0A3463;
-    font: inherit;
-    text-decoration: underline;
-    cursor: pointer;
-    pointer-events: auto;
 }
 
 @media (max-width: 600px) {
@@ -601,10 +579,6 @@ footer {
 
     .home-intro {
         font-size: 0.88rem;
-    }
-
-    .pond-controls:not([hidden]) {
-        padding: 0.5rem 1.25rem 1rem;
     }
 }
 

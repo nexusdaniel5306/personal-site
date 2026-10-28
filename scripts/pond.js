@@ -4,9 +4,7 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const toggle = document.getElementById('pond-toggle');
     const podButton = document.getElementById('pond-pod');
-    const hint = document.getElementById('pond-hint');
     const intro = document.querySelector('.home-intro');
     const navigation = document.querySelector('.home-header nav');
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -444,8 +442,6 @@
 
     function syncPlayback() {
         cancelAnimationFrame(frame);
-        toggle.textContent = paused ? 'Play pond' : 'Pause pond';
-        hint.textContent = paused ? 'The pond is resting.' : 'Tap the lotus pod to draw the koi closer.';
         podButton.disabled = paused;
         if (!paused && visible && !document.hidden) {
             last = performance.now();
@@ -480,10 +476,6 @@
         addRipple(x, y, 'lotus');
         attractToPod(x, y);
     });
-    toggle.addEventListener('click', () => {
-        paused = !paused;
-        syncPlayback();
-    });
     motion.addEventListener('change', () => {
         paused = motion.matches;
         syncPlayback();
@@ -501,7 +493,6 @@
         visible = entry.isIntersecting;
         syncPlayback();
     }).observe(canvas);
-    document.querySelector('.pond-controls').hidden = false;
     podButton.hidden = false;
     resize();
     syncPlayback();
