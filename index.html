@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Li</title>
     <link rel="icon" type="image/webp" href="favicon.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=pond-interactions">
     <script src="scripts/pond.js" defer></script>
 </head>
 <body class="homepage">
     <figure class="pond" aria-label="An ASCII koi pond">
-        <canvas id="pond-canvas" role="img" aria-label="ASCII koi swimming in a full-screen pond. Click or tap the water to make ripples.">
-            Koi in a quiet pond. Welcome to my website!
+        <canvas id="pond-canvas" role="img" aria-label="ASCII koi swimming among lily pads, a pink lotus, and a seed pod. Shaking the lotus pod draws nearby fish closer.">
+            Koi, three lily pads, a pink lotus flower, and a raised lotus seed pod in a quiet pond. Welcome to my website!
         </canvas>
+        <button id="pond-pod" class="pond-pod" type="button" aria-label="Shake the lotus seed pod to attract nearby koi" hidden></button>
     </figure>
 
     <header class="home-header">
@@ -39,7 +40,7 @@
     </main>
 
     <footer class="pond-controls" hidden>
-        <span id="pond-hint">Click or tap the water for ripples.</span>
+        <span id="pond-hint">Tap the lotus pod to draw the koi closer.</span>
         <button id="pond-toggle" type="button" aria-controls="pond-canvas">Pause pond</button>
     </footer>
 </body>
