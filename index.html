@@ -6,43 +6,41 @@
     <title>Daniel Li</title>
     <link rel="icon" type="image/webp" href="favicon.webp">
     <link rel="stylesheet" href="styles.css">
+    <script src="scripts/pond.js" defer></script>
 </head>
-<body>
-    <header>
-        <div class="header-content">
-            <img src="icon.png" alt="Profile Icon" class="profile-icon">
-            <h1>Daniel Li</h1>
-        </div>
+<body class="homepage">
+    <figure class="pond" aria-label="An ASCII koi pond">
+        <canvas id="pond-canvas" role="img" aria-label="ASCII koi swimming in a full-screen pond. Click or tap the water to make ripples.">
+            Koi in a quiet pond. Welcome to my website!
+        </canvas>
+    </figure>
+
+    <header class="home-header">
+        <nav aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Pond</a>
+            <a href="writings.html">Writing</a>
+            <a href="projects.html">Projects</a>
+            <a href="paintings.html">Gallery</a>
+            <a href="resume.html">Resume</a>
+        </nav>
     </header>
 
-    <main>
-        <section class="about">
-            <pre class="welcome-ascii" aria-label="Welcome message">
-__      __   _                    _                                _       _ _       _ 
-\ \    / /__| |__ ___ _ __  ___  | |_ ___   _ __ _  _  __ __ _____| |__ __(_) |_ ___| |
- \ \/\/ / -_) / _/ _ \ '  \/ -_) |  _/ _ \ | '  \ || | \ V  V / -_) '_ (_-< |  _/ -_)_|
-  \_/\_/\___|_\__\___/_|_|_\___|  \__\___/ |_|_|_\_, |  \_/\_/\___|_.__/__/_|\__\___(_)
-                                                 |__/                                  
-            </pre>
+    <main class="home-main">
+        <section class="home-intro" aria-labelledby="home-name">
+            <div class="header-content">
+                <img src="icon.png" alt="Profile Icon" class="profile-icon">
+                <h1 id="home-name">Daniel Li</h1>
+            </div>
             <p>Welcome! I hope you like my domain name. I'm a computer science grad student at UIUC, where I also did my undergrad in CS + Econ.</p>
             <p>Currently, in collaboration with CCC, I'm <a href="weakness-mining-engine.html">building and researching self-improving agent harnesses</a>. To do this, we identify recurring failures across runs and continually patch them in the agent harness.</p>
             <p>Please feel free to explore this website and find out more about my thoughts, inspirations, and interests! If you'd like to know more about me through two short writings, read about <a href="Essay_Folder/there-are-cathedrals-everywhere.html">my passion for custom LEGO minifigures</a> and <a href="Essay_Folder/scrapping-together-a-tiny-docker-server-from-old-gaming-pc-parts.html">my journey to self-hosting</a>!</p>
-        </section>
-
-        <section class="navigation">
-            <h2>Explore</h2>
-            <ul class="nav-links">
-                <li><a href="writings.html">📝 Writing</a></li>
-                <li><a href="projects.html">💻 Projects</a></li>
-                <li><a href="paintings.html">📸 Gallery</a></li>
-                <li><a href="resume.html">📄 Resume</a></li>
-            </ul>
-        </section>
-
-        <section class="Contact">
-            <h2>Contact</h2>
-            <p>Write me at nexusdaniel5306 [at] gmail [dot] com</a></p>
+            <p class="home-contact">Write me at nexusdaniel5306 [at] gmail [dot] com</p>
         </section>
     </main>
+
+    <footer class="pond-controls" hidden>
+        <span id="pond-hint">Click or tap the water for ripples.</span>
+        <button id="pond-toggle" type="button" aria-controls="pond-canvas">Pause pond</button>
+    </footer>
 </body>
 </html>

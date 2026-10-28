@@ -438,18 +438,155 @@ footer {
     font-size: 0.95rem;
 }
 
-.welcome-ascii {
-    margin: 2rem 0 1rem 0;
+.homepage {
+    max-width: none;
+    min-height: 100svh;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+    background: #f5f5ef;
+}
+
+.homepage .pond {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    margin: 0;
+}
+
+.pond canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.home-header {
+    padding: 1.5rem 1.25rem;
+    pointer-events: none;
+}
+
+.home-header nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.85rem;
+}
+
+.home-header a {
+    margin: 0;
+    padding: 0.5rem 0;
+    color: #535b50;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+.home-header a[aria-current],
+.home-header a:hover {
+    color: #192e24;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.home-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    box-sizing: border-box;
+    width: min(100%, 960px);
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    pointer-events: none;
+}
+
+.home-intro {
+    max-width: 680px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    pointer-events: none;
+}
+
+.home-intro p {
+    pointer-events: auto;
+}
+
+.home-intro .header-content {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.home-intro .profile-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.home-intro h1 {
+    margin: 0;
+    font-size: 1.55rem;
+    font-weight: normal;
+}
+
+.home-intro .home-contact {
+    margin-top: 1rem;
+    color: #535b50;
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+.pond-controls:not([hidden]) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    box-sizing: border-box;
+    width: min(100%, 960px);
+    margin: 0 auto;
+    padding: 0.5rem 2rem 1.5rem;
+    color: #62685e;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.pond-controls button {
+    padding: 0.35rem 0;
     border: 0;
     background: transparent;
-    color: #000;
-    font-family: "Courier New", Courier, monospace;
-    font-size: calc(0.74rem + 2pt);
-    font-weight: 700;
-    line-height: 1.2;
-    white-space: pre;
-    overflow-x: auto;
+    color: #0A3463;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+@media (max-width: 600px) {
+    body.homepage {
+        padding: 0;
+    }
+
+    .home-header nav {
+        gap: 0.25rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .home-main {
+        padding: max(26svh, 150px) 1.25rem 1rem;
+    }
+
+    .home-intro {
+        font-size: 0.88rem;
+    }
+
+    .pond-controls:not([hidden]) {
+        padding: 0.5rem 1.25rem 1rem;
+    }
 }
 
 .download-link {
