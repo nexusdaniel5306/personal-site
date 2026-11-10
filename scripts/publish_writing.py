@@ -645,18 +645,17 @@ def build_writings_page(section: str) -> str:
     <link rel="icon" type="image/webp" href="favicon.webp">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <div class="breadcrumb">
-            <a href="index.html">Daniel Li</a> &gt; <span>Writings</span>
-        </div>
+<body class="section-page">
+    <header class="home-header">
+        <nav aria-label="Main navigation">
+            <a href="index.html">Pond</a>
+            <a href="writings.html" aria-current="page">Writing</a>
+            <a href="projects.html">Projects</a>
+            <a href="paintings.html">Gallery</a>
+        </nav>
     </header>
 
     <main>
-        <section class="page-header">
-            <p>My thoughts, articles, and reflections on various topics</p>
-        </section>
-
 {section}
     </main>
 

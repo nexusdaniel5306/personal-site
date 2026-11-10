@@ -5,37 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Li Gallery</title>
     <link rel="icon" type="image/webp" href="favicon.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=gallery-text-tabs">
 </head>
-<body>
-    <header>
-        <div class="breadcrumb">
-            <a href="index.html">Daniel Li</a> &gt; <span>Gallery</span>
-        </div>
+<body class="section-page">
+    <header class="home-header">
+        <nav aria-label="Main navigation">
+            <a href="index.html">Pond</a>
+            <a href="writings.html">Writing</a>
+            <a href="projects.html">Projects</a>
+            <a href="paintings.html" aria-current="page">Gallery</a>
+        </nav>
     </header>
 
     <main>
-        <section class="page-header gallery-page-header">
-            <h1>Gallery</h1>
-            <p>Things I have noticed, and things that have stayed with me.</p>
-        </section>
-
         <div class="gallery-tabs" role="tablist" aria-label="Gallery collections">
             <button class="gallery-tab" id="photosTab" type="button" role="tab" aria-selected="true" aria-controls="photosPanel" data-gallery-tab="photos">
-                <span class="gallery-tab-number" aria-hidden="true">01</span>
-                Photographs
+                My photos
             </button>
             <button class="gallery-tab" id="paintingsTab" type="button" role="tab" aria-selected="false" aria-controls="paintingsPanel" data-gallery-tab="paintings" tabindex="-1">
-                <span class="gallery-tab-number" aria-hidden="true">02</span>
-                Paintings
+                Inspirations
             </button>
         </div>
 
         <section class="gallery-panel" id="photosPanel" role="tabpanel" aria-labelledby="photosTab">
             <div class="gallery-panel-header">
-                <div>
-                    <p class="gallery-panel-description">Select photos of mine, rotated every 6 months</p>
-                </div>
                 <button class="gallery-view-toggle" id="openPhotoCarouselBtn" type="button" aria-haspopup="dialog" aria-controls="galleryCarousel">
                     Carousel
                 </button>
@@ -81,11 +74,8 @@
             </div>
         </section>
 
-        <section class="gallery-panel paintings-panel" id="paintingsPanel" role="tabpanel" aria-labelledby="paintingsTab" hidden>
+        <section class="gallery-panel" id="paintingsPanel" role="tabpanel" aria-labelledby="paintingsTab" hidden>
             <div class="gallery-panel-header">
-                <div>
-                    <p class="gallery-panel-description">my inspirations</p>
-                </div>
                 <button class="gallery-view-toggle" id="openPaintingCarouselBtn" type="button" aria-haspopup="dialog" aria-controls="galleryCarousel" disabled>
                     Carousel
                 </button>
@@ -111,6 +101,6 @@
         </div>
     </main>
 
-    <script src="scripts/gallery.js"></script>
+    <script src="scripts/gallery.js?v=painting-layout"></script>
 </body>
 </html>

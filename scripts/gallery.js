@@ -169,7 +169,7 @@
     async function discoverAdditionalPhotos() {
         const firstSource = photos[0];
         if (!firstSource) {
-            return;
+            return photos;
         }
 
         const directoryIndex = firstSource.lastIndexOf("/");
@@ -180,8 +180,7 @@
 
         const patternMatch = firstSource.match(/^(.*photo-)(\d+)(\.[a-z0-9]+)$/i);
         if (!patternMatch) {
-            photos = sortPhotoSources(Array.from(photoSourcesSet));
-            return;
+            return sortPhotoSources(Array.from(photoSourcesSet));
         }
 
         const prefix = patternMatch[1];
@@ -204,7 +203,7 @@
             }
         }
 
-        photos = sortPhotoSources(Array.from(photoSourcesSet));
+        return sortPhotoSources(Array.from(photoSourcesSet));
     }
 
     function commonsTitleFromUrl(value) {
@@ -407,10 +406,27 @@
 
         const fragment = document.createDocumentFragment();
         const rows = calculatePaintingRows(paintingGrid.clientWidth);
+        let previousSplit = null;
 
         rows.forEach((indices) => {
             const row = document.createElement("div");
             row.className = "painting-row";
+
+            if (indices.length === 2) {
+                const leftRatio = paintingRatio(paintings[indices[0]]);
+                const rightRatio = paintingRatio(paintings[indices[1]]);
+                const split = leftRatio / (leftRatio + rightRatio);
+
+                // Mirror a pair when it moves the seam farther from the row above.
+                if (previousSplit !== null && Math.abs(1 - split - previousSplit) > Math.abs(split - previousSplit)) {
+                    indices.reverse();
+                    previousSplit = 1 - split;
+                } else {
+                    previousSplit = split;
+                }
+            } else {
+                previousSplit = null;
+            }
 
             indices.forEach((index) => {
                 const tile = paintingTiles[index];
@@ -660,8 +676,35 @@
         }
     }
 
-    const photoDiscoveryPromise = discoverAdditionalPhotos();
+    const photoDiscoveryPromise = discoverAdditionalPhotos().then((discoveredPhotos) => {
+        const visiblePhoto = isOpen && activeCollection === "photos" ? photos[currentIndex] : null;
+        photos = discoveredPhotos;
+        if (visiblePhoto) {
+            currentIndex = photos.indexOf(visiblePhoto);
+            renderCarousel();
+        }
+    });
     const paintingsPromise = loadPaintings();
+
+    collageImages.forEach((image, index) => {
+        const source = image.getAttribute("src");
+        if (!source) {
+            return;
+        }
+
+        const button = document.createElement("button");
+        button.className = "photo-open";
+        button.type = "button";
+        button.setAttribute("aria-label", "View photograph " + (index + 1));
+        button.setAttribute("aria-haspopup", "dialog");
+        button.setAttribute("aria-controls", overlay.id);
+        image.before(button);
+        button.append(image);
+        button.addEventListener("click", function () {
+            button.focus({ preventScroll: true });
+            openCarousel("photos", photos.indexOf(source));
+        });
+    });
 
     if (photoOpenButton) {
         photoOpenButton.addEventListener("click", async function () {
