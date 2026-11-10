@@ -479,9 +479,9 @@ def build_article_html(post: Post) -> str:
     <meta name="post:display-date" content="{html.escape(post.display_date, quote=True)}">
     <meta name="post:excerpt" content="{html.escape(post.excerpt, quote=True)}">
     <link rel="icon" type="image/webp" href="../favicon.webp">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles.css?v=detail-layout">
 </head>
-<body>
+<body class="detail-page">
     <header>
         <div class="breadcrumb">
             <a href="../index.html">Daniel Li</a> &gt; <a href="../writings.html">Writings</a> &gt; <span>{html.escape(post.title)}</span>
