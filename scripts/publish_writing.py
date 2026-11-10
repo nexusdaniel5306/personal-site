@@ -643,7 +643,7 @@ def build_writings_page(section: str) -> str:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Li Writings</title>
     <link rel="icon" type="image/webp" href="favicon.webp">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=nav-type">
 </head>
 <body class="section-page">
     <header class="home-header">
